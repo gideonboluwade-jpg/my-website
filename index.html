@@ -1,641 +1,264 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>My Portfolio</title>
-    <link rel="icon" type="image/png" href="images/logo.png">
+    <title>Gideon Boluwade | Portfolio</title>
     <link rel="stylesheet" href="style.css">
-   
-   <style>
+
+    <style>
+        * { box-sizing: border-box; scroll-behavior: smooth; }
+
         body {
-            background-color: rgb(15, 15, 15);
-            color: rgb(241, 239, 239);
-            text-align: center;
-            font-family: Arial;
+            margin: 0;
+            background: #050505;
+            color: white;
+            font-family: Arial, sans-serif;
         }
 
-        button {
-    background-color: #00ff88;
-    color: black;
-    border: none;
-    padding: 14px 30px;
-    font-size: 16px;
-    font-weight: bold;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: 0.3s;
-}
-html {
-    scroll-behavior: smooth;
-}
-
-button:hover {
-    background-color: white;
-    transform: scale(1.05);
-}
         nav {
-    margin-bottom: 50px;
-}
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: #111;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #333;
+            box-shadow: 0 4px 15px rgba(0,0,0,.5);
+        }
 
-nav a {
-    color: white;
-    text-decoration: none;
-    margin: 0 15px;
-}
-.hero {
-    padding-top: 120px;
-    padding-bottom: 120px;
-    min-height: 70vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+        .logo {
+            color: #00ff88;
+            font-size: 22px;
+            font-weight: bold;
+            text-decoration: none;
+        }
 
-    background: radial-gradient(circle at center, #1a1a1a, #050505);
-}
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
 
-.hero h1 {
-    font-size: 60px;
-    font-weight: 800;
-    letter-spacing: 2px;
-    margin-bottom: 20px;
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            transition: .3s ease;
+        }
 
-background: linear-gradient(90deg, #00ff88, #ffffff);
--webkit-background-clip: text;
--webkit-text-fill-color: transparent;
-}
+        .nav-links a:hover { color: #00ff88; }
 
-.hero p {
-    font-size: 20px;
-    color: #aaa;
-    max-width: 600px;
-    line-height: 1.6;
-    margin-bottom: 35px;
-}
-.hero-image {
-    width: 400px;
-    border-radius: 20px;
-    margin-top: 30px;
-    border: 2px solid #00ff88;
-    box-shadow: 0 0 30px rgba(0, 255, 136, 0.25);
-    transition: 0.4s;
-}
-.hero-image:hover {
-    transform: scale(1.03);
-    box-shadow: 0 0 40px rgba(0, 255, 136, 0.45);
-}
-@keyframes float {
-    0% {
-        transform: translateY(0);
-    }
+        .hero {
+            min-height: 85vh;
+            padding: 100px 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: radial-gradient(circle at center, #1a1a1a, #050505);
+        }
 
-    50% {
-        transform: translateY(-10px);
-    }
+        .hero-badge {
+            color: #00ff88;
+            font-size: 14px;
+            font-weight: bold;
+        }
 
-    100% {
-        transform: translateY(0);
-    }
-}
+        .hero h1 {
+            font-size: 60px;
+            margin: 15px 0;
+            background: linear-gradient(90deg,#00ff88,#fff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
 
-.hero-image {
-    animation: float 4s ease-in-out infinite;
-}
-nav {
-    position: sticky;
-    top: 0;
-    z-index: 1000;
+        .hero p {
+            max-width: 600px;
+            color: #aaa;
+            font-size: 20px;
+            line-height: 1.6;
+        }
 
-    background-color: #111;
-    padding: 20px 40px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-bottom: 1px solid #333;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
-}
+        .get-started {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 14px 28px;
+            background: #00ff88;
+            color: #000;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: .3s ease;
+        }
 
-.logo {
-    color: #00ff88;
-    font-size: 22px;
-    font-weight: bold;
-    text-decoration: none;
-    text-shadow: 0 0 10px rgba(0, 255, 136, 0.5);
-    transition: 0.3s;
-}
-.logo:hover {
-    text-shadow: 0 0 20px rgba(0, 255, 136, 0.9);
-}
+        .get-started:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 25px rgba(0,255,136,.25);
+        }
 
-.nav-links {
-    display: flex;
-    gap: 30px;
-}
+        .hero-image {
+            width: min(400px, 85vw);
+            margin-top: 35px;
+            border-radius: 20px;
+            border: 2px solid #00ff88;
+            box-shadow: 0 0 30px rgba(0,255,136,.25);
+        }
 
-.nav-links a {
-    position: relative;
-    color: white;
-    text-decoration: none;
-    font-size: 16px;
-    font-weight: bold;
-    transition: 0.3s;
-}
+        .about-section {
+            padding: 80px 20px;
+            text-align: center;
+        }
 
-.nav-links a::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    bottom: -6px;
-    width: 0;
-    height: 2px;
-    background: #00ff88;
-    transition: 0.3s;
-}
+        .about-card {
+            max-width: 700px;
+            margin: auto;
+            padding: 40px;
+            background: rgba(255,255,255,.03);
+            border: 1px solid #333;
+            border-radius: 20px;
+            transition: .4s ease;
+        }
 
-.nav-links a:hover::after {
-    width: 100%;
-}
+        .about-card:hover {
+            transform: translateY(-8px);
+            border-color: #00ff88;
+            box-shadow: 0 12px 30px rgba(0,255,136,.15);
+        }
 
-.nav-links a:hover {
-    color: #00ff88;
-}
+        .about-label {
+            color: #00ff88;
+            font-size: 14px;
+            font-weight: bold;
+            letter-spacing: 2px;
+        }
 
+        .about-card h2 {
+            font-size: 35px;
+            margin: 10px 0 20px;
+        }
 
-nav a {
-    color: white;
-    text-decoration: none;
-    font-size: 16px;
-    font-weight: bold;
-    transition: 0.3s;
-}
+        .about-card p {
+            color: #aaa;
+            line-height: 1.7;
+        }
 
-nav a:hover {
-    color: #00ff88;
-    transform: translateY(-2px);
-}
-.services {
-    margin-top: 100px;
-    text-align: center;
-}
+        footer {
+            padding: 40px 20px;
+            text-align: center;
+            border-top: 1px solid #222;
+            color: #777;
+        }
 
-.services h2 {
-    font-size: 40px;
-    margin-bottom: 40px;
-}
+        @media (max-width: 768px) {
+            body { overflow-x: hidden; }
 
-.services {
-    display: block;
-}
+            nav {
+                padding: 15px 20px;
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
 
-.services .card {
-    display: inline-block;
-    vertical-align: top;
-    background: linear-gradient(145deg, #222, #151515);
-    padding: 35px;
-    margin: 10px;
-    width: 250px;
-    min-height: 150px;
-    border-radius: 18px;
-    border: 1px solid #333;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-    transition: 0.3s;
-}
+            .logo { font-size: 20px; }
 
-.card {
-    background-color: #111;
-    padding: 25px;
-    width: 250px;
-    border-radius: 15px;
-}
-.services .card:hover {
-    transform: translateY(-10px);
-    border-color: #00ff88;
-    box-shadow: 0 15px 35px rgba(0, 255, 136, 0.2);
-}
-.services .card h3 {
-    color: #00ff88;
-    font-size: 22px;
-    margin-bottom: 15px;
-}
+            .nav-links {
+                width: 100%;
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 8px;
+            }
 
-.services .card p {
-    color: #aaa;
-    line-height: 1.6;
-    font-size: 15px;
-}
-.services {
-    margin-top: 100px;
-    padding: 80px 20px;
-    text-align: center;
-}
+            .nav-links a {
+                padding: 6px 8px;
+                font-size: 14px;
+            }
 
-.contact input,
-.contact textarea {
-    display: block;
-    width: 300px;
-    padding: 15px;
-    margin: 12px auto;
-    background-color: #151515;
-    color: white;
-    border: 1px solid #333;
-    border-radius: 10px;
-    outline: none;
-    font-size: 15px;
-    transition: 0.3s;
-}
-.contact input:focus,
-.contact textarea:focus {
-    border-color: #00ff88;
-    box-shadow: 0 0 10px rgba(0, 255, 136, 0.2);
-}
-.contact textarea {
-    height: 120px;
-}
-@media (max-width: 600px) {
+            .hero {
+                padding: 80px 20px 50px;
+            }
 
-    .stats {
-    flex-direction: column;
-    gap: 35px;
-}
-    .hero h1 {
-        font-size: 35px;
-    }
+            .hero h1 {
+                font-size: clamp(32px, 10vw, 42px);
+                line-height: 1.2;
+            }
 
-    nav a {
-        margin: 0 8px;
-        font-size: 14px;
-    }
+            .hero p {
+                max-width: 90%;
+                font-size: 15px;
+                line-height: 1.7;
+            }
 
-    .card {
-        width: 80%;
-    }
+            .hero-image {
+                width: min(75vw, 280px);
+                height: auto;
+                max-width: 280px;
+                object-fit: cover;
+            }
 
-    .contact input,
-    .contact textarea {
-        width: 80%;
-    }
-  nav {
-    padding: 15px 20px;
-    flex-direction: column;
-    gap: 15px;
-   
-}
+            .get-started {
+                min-width: 150px;
+                text-align: center;
+            }
 
-.logo {
-    font-size: 20px;
-}
+            .about-section { padding: 50px 20px; }
 
-.nav-links {
-    gap: 15px;
-}  
-.hero h1 {
-    font-size: 38px;
-    letter-spacing: 1px;
-}
+            .about-card {
+                width: 100%;
+                padding: 25px 20px;
+            }
 
-.hero p {
-    font-size: 16px;
-    padding: 0 15px;
-}
+            .about-card h2 {
+                font-size: clamp(28px, 8vw, 35px);
+            }
 
-.hero-image {
-    width: 85%;
-    max-width: 400px;
-}
-.services .card {
-    width: 80%;
-    margin: 15px auto;
-    display: block;
-}
-.contact input,
-.contact textarea {
-    width: 80%;
-    box-sizing: border-box;
-}
-
-}
-footer {
-    margin-top: 0;
-    padding: 40px 20px;
-    background: #050505;
-    text-align: center;
-    border-top: 1px solid #222;
-}
-
-footer p {
-    color: #777;
-    font-size: 14px;
-    margin: 0;
-}
-.contact {
-    margin-top: 100px;
-    padding: 80px 20px;
-    text-align: center;
-    background: linear-gradient(180deg, #111, #050505);
-}
-
-.contact h2 {
-    font-size: 40px;
-    margin-bottom: 40px;
-}
-.contact button {
-    margin-top: 15px;
-    padding: 14px 35px;
-    border-radius: 10px;
-    font-size: 16px;
-    font-weight: bold;
-}
-body {
-    animation: pageLoad 1s ease-in-out;
-}
-
-@keyframes pageLoad {
-    from {
-        opacity: 0;
-        transform: translateY(10px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-.service-icon {
-    font-size: 40px;
-    margin-bottom: 15px;
-}
-.services .card:hover .service-icon {
-    transform: scale(1.2);
-    transition: 0.3s;
-}
-.services,
-.contact {
-    animation: fadeUp 1s ease-in-out;
-}
-
-@keyframes fadeUp {
-    from {
-        opacity: 0;
-        transform: translateY(30px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-.about-section {
-    padding: 80px 20px;
-    text-align: center;
-    background: #0d0d0d;
-}
-
-.about-section h2 {
-    font-size: 40px;
-    margin-bottom: 30px;
-    color: white;
-    position: relative;
-    display: inline-block;
-}
-.about-section h2::after {
-    content: "";
-    display: block;
-    width: 60px;
-    height: 3px;
-    background: #00ff88;
-    margin: 12px auto 0;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 255, 136, 0.6);
-}
-
-.about-section p {
-    max-width: 650px;
-    margin: auto;
-    color: #aaa;
-    line-height: 1.7;
-    font-size: 17px;
-}
-.about-card {
-    max-width: 700px;
-    margin: auto;
-    padding: 40px;
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid #333;
-    border-radius: 20px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
-}
-.stats {
-    display: flex;
-    justify-content: center;
-    gap: 60px;
-    padding: 70px 20px;
-    text-align: center;
-    background: radial-gradient(circle at center, #111, #050505);
-    border-top: 1px solid #222;
-    border-bottom: 1px solid #222;
-}
-
-.stat h3 {
-    font-size: 40px;
-    color: #00ff88;
-    margin-bottom: 10px;
-}
-
-.stat p {
-    color: #aaa;
-    margin: 0;
-}
-.services {
-    position: relative;
-}
-
-.services::before {
-    content: "";
-    display: block;
-    width: 80px;
-    height: 3px;
-    background: #00ff88;
-    margin: 0 auto 40px;
-    border-radius: 5px;
-    box-shadow: 0 0 12px rgba(0, 255, 136, 0.6);
-}
-#topBtn {
-    display: none;
-    position: fixed;
-    bottom: 25px;
-    right: 25px;
-    padding: 12px 20px;
-    border-radius: 10px;
-    background: #111;
-    color: #00ff88;
-    border: 1px solid #00ff88;
-    font-size: 14px;
-    font-weight: bold;
-    cursor: pointer;
-    z-index: 999;
-    box-shadow: 0 0 15px rgba(0, 255, 136, 0.2);
-    transition: 0.3s;
-}
-
-#topBtn:hover {
-    background: #00ff88;
-    color: #000;
-    transform: translateY(-6px) scale(1.05);
-    box-shadow: 0 0 30px rgba(0, 255, 136, 0.6);
-}
-.contact form {
-    max-width: 500px;
-    margin: auto;
-}
-
-.contact input,
-.contact textarea {
-    box-sizing: border-box;
-    width: 100%;
-}
-
-.contact button {
-    margin-top: 15px;
-}
-.hero-badge {
-    color: #00ff88;
-    font-size: 14px;
-    font-weight: bold;
-    margin-bottom: 15px;
-}
+            .about-card p {
+                font-size: 15px;
+                line-height: 1.7;
+            }
+        }
     </style>
+</head>
 
 <body>
-<nav>
-   <a href="#home" class="logo">GIDEON BOLUWADE</a>
+    <nav>
+        <a href="#home" class="logo">GIDEON BOLUWADE</a>
+        <div class="nav-links">
+            <a href="#home">Home</a>
+            <a href="#about">About</a>
+            <a href="projects.html">Projects</a>
+        </div>
+    </nav>
 
-    <div class="nav-links">
- <a href="#home">Home</a>
-<a href="#about">About</a>
-<a href="#services">Services</a>
-<a href="#contact">Contact</a>
-    </div>
-</nav>
-<section class="hero" id="home">
-    <p class="hero-badge">● Available for Projects</p>
- <h1>Hi, I'm Gideon.</h1>
-<p>I build modern websites and explore the world of data.</p>
-    <button onclick="document.getElementById('services').scrollIntoView({behavior: 'smooth'})">
-    Get Started
-</button>
-    <img src="images/hero.png" alt="My picture" class="hero-image">
-</section>
+    <section class="hero" id="home">
+        <p class="hero-badge">● Available for Projects</p>
+        <h1>Hi, I'm Gideon.</h1>
+        <p>I build modern websites and explore the world of data.</p>
+        <a href="projects.html" class="get-started">Get Started</a>
+        <img src="image/hero.png" alt="My picture" class="hero-image">
+    </section>
 
-<section class="about-section" id="about">
+    <section class="about-section" id="about">
+        <div class="about-card">
+            <p class="about-label">ABOUT ME</p>
+            <h2>I'm Gideon</h2>
+            <p>
+                I am a beginner developer and data enthusiast,
+                passionate about building modern websites and
+                turning data into useful information.
+            </p>
+            <p>
+                I am currently developing my skills in web development,
+                data analysis, R, RStudio, HTML, CSS and JavaScript.
+            </p>
+        </div>
+    </section>
 
-    <div class="about-card">
-
-        <h2>About me</h2>
-
-        <p>
-            I am a beginner developer and data enthusiast,
-            building modern websites and turning data into useful information.
-        </p>
-
-   <button onclick="document.getElementById('services').scrollIntoView({behavior: 'smooth'})">
-    Learn More
-</button>
-
-    </div>
-
-</section>
-
-<section class="services" id="services">
-    <h2>My Services</h2>
-
-    <div class="card">
-    <div class="service-icon">🎨</div>
-    <h3>Web Design</h3>
-    <p>I create clean and modern websites.</p>
-</div>
-
-    <div class="card">
-    <div class="service-icon">💻</div>
-    <h3>Web Development</h3>
-    <p>I build functional websites for businesses.</p>
-</div>
-
-   <div class="card">
-    <div class="service-icon">📊</div>
-    <h3>Data Analysis</h3>
-    <p>I turn data into useful information.</p>
-</div>
-</section>
-<section class="stats">
-
-    <div class="stat">
-        <h3>50+</h3>
-        <p>Projects</p>
-    </div>
-
-    <div class="stat">
-        <h3>30+</h3>
-        <p>Clients</p>
-    </div>
-
-    <div class="stat">
-        <h3>100%</h3>
-        <p>Commitment</p>
-    </div>
-
-<section class="contact" id="contact">
-    <h2>Contact Me</h2>
-
-    <form onsubmit="event.preventDefault(); sendMessage();">
-
-        <input type="text" id="name" placeholder="Your Name">
-
-        <input type="email" id="email" placeholder="Your Email">
-
-        <textarea id="message" placeholder="Your Message"></textarea>
-
-        <button type="submit">Send Message</button>
-
-    </form>
-</section>
-<script>
-    function sendMessage() {
-        const name = document.getElementById("name").value;
-        const email = document.getElementById("email").value;
-        const message = document.getElementById("message").value;
-
-        if (name === "" || email === "" || message === "") {
-            alert("Please fill in all fields.");
-            return;
-        }
-
-        alert("Message sent successfully!");
-    }
-</script>
-<button id="topBtn" onclick="scrollToTop()">Back to Top</button>
-<script>
-    const topBtn = document.getElementById("topBtn");
-
-    window.onscroll = function() {
-        if (document.documentElement.scrollTop > 300) {
-            topBtn.style.display = "block";
-        } else {
-            topBtn.style.display = "none";
-        }
-    };
-
-    function scrollToTop() {
-        window.scrollTo({
-            top: 0,
-            behavior: "smooth"
-        });
-    }
-</script>
-<footer>
-    <p>© 2026 My Website. All rights reserved.</p>
-</footer>
-
+    <footer>
+        <p>© 2026 Gideon. All Rights Reserved.</p>
+    </footer>
 </body>
 </html>
