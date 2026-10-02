@@ -1,15 +1,30 @@
+/* ================================
+   PAGE TRANSITION
+================================ */
+
 document.querySelectorAll(".page-link").forEach(link => {
-    link.addEventListener("click", function(event) {
+    link.addEventListener("click", function (event) {
         event.preventDefault();
+
         document.body.classList.add("page-exit");
-        setTimeout(() => { window.location.href = this.href; }, 500);
+
+        setTimeout(() => {
+            window.location.href = this.href;
+        }, 500);
     });
 });
+
+
+/* ================================
+   CONTACT FORM
+================================ */
 
 const contactForm = document.getElementById("contact-form");
 
 if (contactForm) {
-    contactForm.addEventListener("submit", async function(event) {
+
+    contactForm.addEventListener("submit", async function (event) {
+
         event.preventDefault();
 
         const sendButton = contactForm.querySelector("button");
@@ -18,28 +33,44 @@ if (contactForm) {
         sendButton.textContent = "Sending...";
         sendButton.disabled = true;
 
+        const formData = new FormData(contactForm);
+
         try {
-            const response = await fetch("https://api.web3forms.com/submit", {
-                method: "POST",
-                body: new FormData(contactForm)
-            });
+
+            const response = await fetch(
+                "https://api.web3forms.com/submit",
+                {
+                    method: "POST",
+                    body: formData
+                }
+            );
 
             const result = await response.json();
 
             if (result.success) {
+
                 message.textContent = "Message sent successfully! ✅";
                 message.style.color = "#00ff88";
+
                 contactForm.reset();
+
             } else {
+
                 message.textContent = "Message failed to send ❌";
                 message.style.color = "#ff6b6b";
+
             }
+
         } catch (error) {
+
             message.textContent = "Something went wrong ❌";
             message.style.color = "#ff6b6b";
+
         }
 
         sendButton.textContent = "Send Message";
         sendButton.disabled = false;
+
     });
+
 }
