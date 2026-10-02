@@ -3,16 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Gideon Boluwade | Portfolio</title>
+
+    <link rel="icon" type="image/png" href="image/logo.png">
     <link rel="stylesheet" href="style.css">
 
     <style>
-        * { box-sizing: border-box; scroll-behavior: smooth; }
+        html {
+            scroll-behavior: smooth;
+        }
 
         body {
             margin: 0;
             background: #050505;
-            color: white;
+            color: #f1efef;
+            text-align: center;
             font-family: Arial, sans-serif;
         }
 
@@ -33,7 +39,9 @@
             color: #00ff88;
             font-size: 22px;
             font-weight: bold;
+            letter-spacing: 1px;
             text-decoration: none;
+            text-shadow: 0 0 10px rgba(0,255,136,.5);
         }
 
         .nav-links {
@@ -42,74 +50,131 @@
         }
 
         .nav-links a {
+            position: relative;
             color: white;
             text-decoration: none;
+            font-size: 16px;
             font-weight: bold;
-            transition: .3s ease;
+            transition: .3s;
         }
 
-        .nav-links a:hover { color: #00ff88; }
+        .nav-links a::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: -6px;
+            width: 0;
+            height: 2px;
+            background: #00ff88;
+            transition: .3s;
+        }
+
+        .nav-links a:hover {
+            color: #00ff88;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        nav.scrolled {
+            background: rgba(0,0,0,.95);
+            box-shadow: 0 5px 25px rgba(0,255,136,.15);
+            backdrop-filter: blur(10px);
+        }
 
         .hero {
-            min-height: 85vh;
-            padding: 100px 20px;
+            padding: 120px 20px;
+            min-height: 70vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            text-align: center;
             background: radial-gradient(circle at center, #1a1a1a, #050505);
+            animation: heroFade 1.2s ease forwards;
         }
 
         .hero-badge {
             color: #00ff88;
             font-size: 14px;
             font-weight: bold;
+            margin-bottom: 15px;
+            animation: badgePulse 2s ease-in-out infinite;
         }
 
         .hero h1 {
             font-size: 60px;
-            margin: 15px 0;
+            font-weight: 800;
+            letter-spacing: 2px;
+            margin-bottom: 20px;
             background: linear-gradient(90deg,#00ff88,#fff);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
         .hero p {
-            max-width: 600px;
-            color: #aaa;
             font-size: 20px;
+            color: #aaa;
+            max-width: 600px;
             line-height: 1.6;
-        }
-
-        .get-started {
-            display: inline-block;
-            margin-top: 15px;
-            padding: 14px 28px;
-            background: #00ff88;
-            color: #000;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: bold;
-            transition: .3s ease;
-        }
-
-        .get-started:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 8px 25px rgba(0,255,136,.25);
+            margin-bottom: 35px;
         }
 
         .hero-image {
-            width: min(400px, 85vw);
-            margin-top: 35px;
+            width: 400px;
+            max-width: 90%;
             border-radius: 20px;
+            margin-top: 30px;
             border: 2px solid #00ff88;
             box-shadow: 0 0 30px rgba(0,255,136,.25);
+            animation: floatImage 4s ease-in-out infinite;
+        }
+
+        button {
+            background: #00ff88;
+            color: #000;
+            border: none;
+            padding: 14px 30px;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: .3s;
+        }
+
+        button:hover {
+            background: white;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0,255,136,.25);
         }
 
         .about-section {
             padding: 80px 20px;
             text-align: center;
+            background: #0d0d0d;
+        }
+
+        .about-section h2,
+        .services h2,
+        .skills h2,
+        .projects h2,
+        .contact h2 {
+            font-size: 40px;
+            margin-bottom: 40px;
+        }
+
+        .about-section h2::after,
+        .skills h2::after,
+        .projects h2::after,
+        .contact h2::after {
+            content: "";
+            display: block;
+            width: 60px;
+            height: 3px;
+            background: #00ff88;
+            margin: 12px auto 0;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0,255,136,.6);
         }
 
         .about-card {
@@ -119,66 +184,396 @@
             background: rgba(255,255,255,.03);
             border: 1px solid #333;
             border-radius: 20px;
-            transition: .4s ease;
+            box-shadow: 0 10px 30px rgba(0,0,0,.4);
+            transition: .3s;
         }
 
         .about-card:hover {
             transform: translateY(-8px);
             border-color: #00ff88;
-            box-shadow: 0 12px 30px rgba(0,255,136,.15);
+            box-shadow: 0 15px 35px rgba(0,255,136,.2);
         }
 
-        .about-label {
-            color: #00ff88;
-            font-size: 14px;
-            font-weight: bold;
-            letter-spacing: 2px;
-        }
-
-        .about-card h2 {
-            font-size: 35px;
-            margin: 10px 0 20px;
-        }
-
-        .about-card p {
+        .about-section p {
+            max-width: 650px;
+            margin: auto;
             color: #aaa;
             line-height: 1.7;
+            font-size: 17px;
+        }
+
+        .services {
+            padding: 100px 20px;
+            text-align: center;
+            background: #050505;
+        }
+
+        .services::before {
+            content: "";
+            display: block;
+            width: 80px;
+            height: 3px;
+            background: #00ff88;
+            margin: 0 auto 40px;
+            border-radius: 5px;
+        }
+
+        .services .card {
+            display: inline-block;
+            vertical-align: top;
+            background: linear-gradient(145deg,#222,#151515);
+            padding: 35px;
+            margin: 10px;
+            width: 250px;
+            min-height: 150px;
+            border-radius: 18px;
+            border: 1px solid #333;
+            box-shadow: 0 10px 30px rgba(0,0,0,.5);
+            transition: .3s;
+        }
+
+        .services .card:hover {
+            transform: translateY(-10px);
+            border-color: #00ff88;
+            box-shadow: 0 15px 35px rgba(0,255,136,.2);
+        }
+
+        .service-icon {
+            font-size: 40px;
+            margin-bottom: 15px;
+        }
+
+        .services .card h3,
+        .project-card h3 {
+            color: #00ff88;
+        }
+
+        .services .card p,
+        .project-card p {
+            color: #aaa;
+            line-height: 1.6;
+        }
+
+        .skills {
+            padding: 80px 20px;
+            text-align: center;
+            background: #050505;
+        }
+
+        .skills-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .skill {
+            padding: 15px 25px;
+            border: 1px solid #333;
+            border-radius: 10px;
+            color: #00ff88;
+            background: #111;
+            font-weight: bold;
+            transition: .3s;
+        }
+
+        .skill:hover {
+            border-color: #00ff88;
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 0 20px rgba(0,255,136,.2);
+        }
+
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 60px;
+            padding: 70px 20px;
+            text-align: center;
+            background: radial-gradient(circle at center,#111,#050505);
+            border-top: 1px solid #222;
+            border-bottom: 1px solid #222;
+        }
+
+        .stat h3 {
+            font-size: 40px;
+            color: #00ff88;
+            margin-bottom: 10px;
+        }
+
+        .stat p {
+            color: #aaa;
+            margin: 0;
+        }
+
+        .projects {
+            padding: 80px 20px;
+            text-align: center;
+            background: #0d0d0d;
+        }
+
+        .project-container {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            flex-wrap: wrap;
+        }
+
+        .project-card {
+            width: 280px;
+            padding: 30px;
+            background: linear-gradient(145deg,#222,#151515);
+            border: 1px solid #333;
+            border-radius: 18px;
+            transition: .3s;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            border-color: #00ff88;
+            box-shadow: 0 15px 35px rgba(0,255,136,.2);
+        }
+
+        .project-img {
+            width: 100%;
+            height: 160px;
+            object-fit: cover;
+            border-radius: 12px;
+            margin-bottom: 20px;
+        }
+
+        .contact {
+            padding: 100px 20px;
+            text-align: center;
+            background: linear-gradient(180deg,#111,#050505);
+            border-top: 1px solid #222;
+        }
+
+        .contact form {
+            max-width: 500px;
+            margin: auto;
+        }
+
+        .contact input,
+        .contact textarea {
+            box-sizing: border-box;
+            display: block;
+            width: 100%;
+            padding: 15px;
+            margin: 12px auto;
+            background: #151515;
+            color: white;
+            border: 1px solid #333;
+            border-radius: 10px;
+            outline: none;
+            font-size: 15px;
+        }
+
+        .contact textarea {
+            height: 120px;
+        }
+
+        .contact input:focus,
+        .contact textarea:focus {
+            border-color: #00ff88;
+            box-shadow: 0 0 15px rgba(0,255,136,.2);
+        }
+
+        .contact button {
+            margin-top: 15px;
+        }
+
+        #form-message {
+            min-height: 24px;
+            color: #00ff88;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        #topBtn {
+            display: none;
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            padding: 12px 20px;
+            border-radius: 10px;
+            background: #111;
+            color: #00ff88;
+            border: 1px solid #00ff88;
+            font-size: 14px;
+            font-weight: bold;
+            cursor: pointer;
+            z-index: 999;
         }
 
         footer {
-            padding: 40px 20px;
+            padding: 50px 20px;
+            background: #050505;
             text-align: center;
             border-top: 1px solid #222;
+        }
+
+        footer p {
             color: #777;
+            font-size: 14px;
+            margin: 0;
+        }
+
+        .built-with {
+            color: #555;
+            font-size: 13px;
+            margin-top: 10px;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 30px 0 35px;
+            flex-wrap: wrap;
+        }
+
+        .social-links a {
+            color: #00ff88;
+            text-decoration: none;
+            border: 1px solid #00ff88;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-weight: bold;
+            transition: .3s;
+        }
+
+        .social-links a:hover {
+            background: #00ff88;
+            color: #000;
+            transform: translateY(-4px);
+        }
+
+        @keyframes heroFade {
+            from {
+                opacity: 0;
+                transform: translateY(25px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes floatImage {
+            0%,100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        @keyframes badgePulse {
+            0%,100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: .55;
+            }
         }
 
         @media (max-width: 768px) {
-            body { overflow-x: hidden; }
-
             nav {
-                padding: 15px 20px;
-                flex-direction: column;
-                gap: 15px;
                 text-align: center;
             }
 
-            .logo { font-size: 20px; }
+            nav .logo {
+                font-size: 20px;
+            }
 
             .nav-links {
                 width: 100%;
-                display: flex;
-                flex-wrap: wrap;
-                justify-content: center;
                 gap: 8px;
             }
 
             .nav-links a {
                 padding: 6px 8px;
+            }
+
+            body {
+                overflow-x: hidden;
+            }
+
+            .get-started {
+                display: inline-block;
+                padding: 14px 28px;
+                font-size: 16px;
+                min-width: 150px;
+                text-align: center;
+            }
+
+            nav {
+                padding: 15px 20px;
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .nav-links {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 12px;
+            }
+
+            .nav-links a {
+                margin: 0 6px;
                 font-size: 14px;
             }
 
             .hero {
                 padding: 80px 20px 50px;
+                text-align: center;
+            }
+
+            .hero h1 {
+                font-size: 42px;
+            }
+
+            .hero p {
+                font-size: 15px;
+                line-height: 1.7;
+            }
+
+            .hero-image {
+                width: 220px;
+                height: 220px;
+                margin-top: 30px;
+            }
+
+            .get-started {
+                padding: 12px 24px;
+            }
+
+            .about-section {
+                padding: 20px;
+            }
+
+            .about-card {
+                padding: 25px 20px;
+            }
+
+            .about-card h2 {
+                font-size: 30px;
+            }
+
+            .hero-image {
+                width: min(75vw, 280px);
+                height: auto;
+                max-width: 280px;
+                border-radius: 50%;
+                object-fit: cover;
+            }
+
+            .services .card {
+                width: 100%;
+                max-width: 350px;
+                box-sizing: border-box;
+                margin: 15px auto;
             }
 
             .hero h1 {
@@ -186,28 +581,9 @@
                 line-height: 1.2;
             }
 
-            .hero p {
-                max-width: 90%;
-                font-size: 15px;
-                line-height: 1.7;
-            }
-
-            .hero-image {
-                width: min(75vw, 280px);
-                height: auto;
-                max-width: 280px;
-                object-fit: cover;
-            }
-
-            .get-started {
-                min-width: 150px;
-                text-align: center;
-            }
-
-            .about-section { padding: 50px 20px; }
-
             .about-card {
                 width: 100%;
+                max-width: 100%;
                 padding: 25px 20px;
             }
 
@@ -219,6 +595,73 @@
                 font-size: 15px;
                 line-height: 1.7;
             }
+
+            .hero p {
+                max-width: 90%;
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .project-card {
+                width: 100%;
+                max-width: 350px;
+                padding: 25px;
+                box-sizing: border-box;
+            }
+
+            .project-img {
+                height: 180px;
+            }
+
+            .contact {
+                padding: 70px 15px;
+            }
+
+            .contact form {
+                width: 100%;
+                max-width: 350px;
+            }
+
+            .contact button {
+                width: 100%;
+                max-width: 350px;
+            }
+
+            .stats {
+                flex-direction: column;
+                gap: 25px;
+            }
+
+            footer {
+                padding: 40px 15px;
+            }
+
+            .social-links {
+                gap: 10px;
+            }
+
+            .social-links a {
+                padding: 9px 15px;
+                font-size: 13px;
+            }
+
+            .get-started {
+                display: inline-block;
+                background: #00ff88;
+                color: #000;
+                padding: 14px 30px;
+                font-size: 16px;
+                font-weight: bold;
+                border-radius: 8px;
+                text-decoration: none;
+                transition: 0.3s ease;
+            }
+
+            .get-started:hover {
+                background: white;
+                transform: translateY(-3px);
+                box-shadow: 0 8px 20px rgba(0, 255, 136, 0.3);
+            }
         }
     </style>
 </head>
@@ -226,6 +669,7 @@
 <body>
     <nav>
         <a href="#home" class="logo">GIDEON BOLUWADE</a>
+
         <div class="nav-links">
             <a href="#home">Home</a>
             <a href="#about">About</a>
@@ -235,21 +679,36 @@
 
     <section class="hero" id="home">
         <p class="hero-badge">● Available for Projects</p>
-        <h1>Hi, I'm Gideon.</h1>
-        <p>I build modern websites and explore the world of data.</p>
-        <a href="projects.html" class="get-started">Get Started</a>
-        <img src="image/hero.png" alt="My picture" class="hero-image">
+
+        <h1 id="typing-text"></h1>
+
+        <p>
+            I build modern websites and explore the world of data.
+        </p>
+
+        <a href="projects.html" class="get-started">
+            Get Started
+        </a>
+
+        <img
+            src="image/hero.png"
+            alt="My picture"
+            class="hero-image"
+        >
     </section>
 
     <section class="about-section" id="about">
         <div class="about-card">
             <p class="about-label">ABOUT ME</p>
+
             <h2>I'm Gideon</h2>
+
             <p>
                 I am a beginner developer and data enthusiast,
                 passionate about building modern websites and
                 turning data into useful information.
             </p>
+
             <p>
                 I am currently developing my skills in web development,
                 data analysis, R, RStudio, HTML, CSS and JavaScript.
@@ -257,8 +716,82 @@
         </div>
     </section>
 
+    <button id="topBtn" onclick="scrollToTop()">
+        Back to Top
+    </button>
+
     <footer>
-        <p>© 2026 Gideon. All Rights Reserved.</p>
+        <div class="social-links">
+            <a href="https://github.com/gideonboluwade-jpg" target="_blank">
+                GitHub
+            </a>
+
+            <a href="https://x.com/n_gide26858" target="_blank">
+                X
+            </a>
+
+            <a href="mailto:gideonboluwade@gmail.com">
+                Email
+            </a>
+        </div>
+
+        <p>
+            © 2026 Gideon Boluwade. All rights reserved.
+        </p>
+
+        <p class="built-with">
+            Built with HTML, CSS & JavaScript.
+        </p>
     </footer>
+
+    <script>
+        const topBtn = document.getElementById("topBtn");
+
+        window.addEventListener("scroll", function () {
+            if (window.scrollY > 300) {
+                topBtn.style.display = "block";
+            } else {
+                topBtn.style.display = "none";
+            }
+        });
+
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+        }
+    </script>
+
+    <script>
+        const nav = document.querySelector("nav");
+
+        window.addEventListener("scroll", function () {
+            if (window.scrollY > 50) {
+                nav.classList.add("scrolled");
+            } else {
+                nav.classList.remove("scrolled");
+            }
+        });
+    </script>
+
+    <script>
+        const text = "Hi, I'm Gideon.";
+        const typingText = document.getElementById("typing-text");
+
+        let index = 0;
+
+        function typeText() {
+            if (index < text.length) {
+                typingText.textContent += text.charAt(index);
+                index++;
+                setTimeout(typeText, 100);
+            }
+        }
+
+        typeText();
+    </script>
+
+    <script src="script.js"></script>
 </body>
 </html>
