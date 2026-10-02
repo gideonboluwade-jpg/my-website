@@ -3,28 +3,41 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>About Gideon | Portfolio</title>
+<title>About Me | Gideon Boluwade</title>
 <link rel="icon" type="image/png" href="images/logo.png">
 <link rel="stylesheet" href="style.css">
 <style>
-body{min-height:100vh;display:grid;place-items:center;overflow-x:hidden;background:linear-gradient(rgba(0,255,136,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(0,255,136,.04) 1px,transparent 1px),#050505;background-size:40px 40px}
-.about-page{width:min(700px,90%);padding:50px 35px;text-align:center;background:rgba(15,15,15,.94);border:1px solid #00ff88;border-radius:24px;box-shadow:0 0 45px rgba(0,255,136,.18);animation:aboutEnter .8s ease both,aboutFloat 5s ease-in-out 1s infinite}
-.about-badge{color:#00ff88;font-weight:bold;letter-spacing:2px}
-.about-page h1{font-size:clamp(38px,8vw,64px);margin:15px 0;background:linear-gradient(90deg,#00ff88,#fff);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-.about-page p{color:#aaa;line-height:1.8;font-size:17px}
-.back-button{display:inline-block;margin-top:25px;padding:13px 25px;color:#00ff88;border:1px solid #00ff88;border-radius:8px;text-decoration:none;font-weight:bold;transition:.3s}
-.back-button:hover{background:#00ff88;color:#000;transform:translateY(-4px);box-shadow:0 0 25px rgba(0,255,136,.4)}
-@keyframes aboutEnter{from{opacity:0;transform:scale(.85) translateY(30px);filter:blur(8px)}to{opacity:1;transform:scale(1) translateY(0);filter:blur(0)}}
-@keyframes aboutFloat{0%,100%{translate:0 0}50%{translate:0 -8px}}
+body{min-height:100vh;display:flex;justify-content:center;align-items:center;padding:30px;text-align:center;font-family:Arial,sans-serif;overflow:hidden;background:linear-gradient(rgba(0,255,136,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(0,255,136,.035) 1px,transparent 1px),#050505;background-size:45px 45px;animation:gridMove 12s linear infinite}
+.about-page{position:relative;width:min(700px,100%);padding:50px 40px;background:rgba(15,15,15,.95);border:1px solid #00ff88;border-radius:24px;box-shadow:0 20px 50px rgba(0,0,0,.7),0 0 30px rgba(0,255,136,.15);animation:aboutEnter 1s cubic-bezier(.16,1,.3,1),aboutFloat 5s ease-in-out 1s infinite}
+.about-page::before{content:"";position:absolute;inset:-4px;border-radius:26px;background:linear-gradient(90deg,transparent,rgba(0,255,136,.4),transparent);background-size:200% 100%;opacity:.5;filter:blur(8px);z-index:-1;animation:borderSweep 4s linear infinite}
+.hero-badge{position:relative;display:inline-block;color:#00ff88;font-weight:bold;letter-spacing:1px;text-shadow:0 0 10px rgba(0,255,136,.4);animation:textReveal .8s ease forwards;opacity:0}
+.hero-badge::after{content:"";position:absolute;left:0;bottom:-6px;width:100%;height:2px;background:#00ff88;transform:scaleX(0);transition:transform .5s ease;box-shadow:0 0 10px rgba(0,255,136,.5)}
+.about-page:hover .hero-badge::after{transform:scaleX(1)}
+.about-page h1{font-size:clamp(40px,8vw,60px);margin:20px 0;color:#00ff88;text-shadow:0 0 10px rgba(0,255,136,.3),0 0 30px rgba(0,255,136,.15);animation:textReveal .8s ease .2s forwards;opacity:0}
+.about-page h1::after{content:"";display:inline-block;width:3px;height:.9em;margin-left:8px;background:#00ff88;vertical-align:middle;animation:cursorBlink .8s infinite;box-shadow:0 0 10px #00ff88}
+.about-page p:not(.hero-badge){color:#aaa;font-size:18px;line-height:1.8;max-width:600px;margin:20px auto;animation:textReveal .8s ease .4s forwards;opacity:0;transition:color .3s ease,text-shadow .3s ease}
+.about-page:hover p:not(.hero-badge){color:#ddd;text-shadow:0 0 10px rgba(0,255,136,.1)}
+.back-button{position:relative;display:inline-block;margin-top:25px;padding:14px 28px;background:#00ff88;color:#000;text-decoration:none;border-radius:8px;font-weight:bold;overflow:hidden;transition:transform .3s ease,background .3s ease,box-shadow .3s ease;animation:textReveal .8s ease .6s forwards;opacity:0}
+.back-button:hover{transform:translateY(-5px) scale(1.05);background:white;box-shadow:0 0 20px rgba(0,255,136,.5),0 0 40px rgba(0,255,136,.25)}
+.back-button:active{transform:scale(.95)}
+.back-button::before{content:"";position:absolute;top:0;left:-100%;width:60%;height:100%;background:rgba(255,255,255,.35);transform:skewX(-25deg);transition:left .6s ease}
+.back-button:hover::before{left:130%}
+@keyframes aboutEnter{from{opacity:0;transform:translateY(70px) scale(.92);filter:blur(8px)}to{opacity:1;transform:translateY(0) scale(1);filter:blur(0)}}
+@keyframes aboutFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
+@keyframes textReveal{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+@keyframes cursorBlink{0%,45%{opacity:1}46%,100%{opacity:0}}
+@keyframes borderSweep{from{background-position:200% 0}to{background-position:-200% 0}}
+@keyframes gridMove{from{background-position:0 0}to{background-position:45px 45px}}
+@media(max-width:600px){body{padding:20px}.about-page{padding:35px 22px}.about-page p:not(.hero-badge){font-size:16px}.back-button{width:100%;max-width:250px}}
 </style>
 </head>
 <body>
 <main class="about-page">
-<div class="about-badge">ABOUT ME</div>
-<h1>Gideon Boluwade</h1>
-<p>I am a beginner developer and data enthusiast, building modern websites and exploring how data can be turned into useful information.</p>
-<p>I enjoy learning HTML, CSS, JavaScript and R while working on projects that help me grow as a developer and data analyst.</p>
-<a href="index.html" class="back-button page-link">← Back to Portfolio</a>
+<p class="hero-badge">● Get to Know Me</p>
+<h1>About Me</h1>
+<p>I am Gideon Boluwade, a beginner developer and data enthusiast building modern websites and turning data into useful information.</p>
+<p>I enjoy learning web development, working with data, and creating useful digital experiences.</p>
+<a href="index.html" class="back-button page-link">← Back Home</a>
 </main>
 <script src="script.js"></script>
 </body>
